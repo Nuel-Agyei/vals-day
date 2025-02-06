@@ -1,1 +1,7 @@
 @import 'tailwindcss';
+body{
+  @apply bg-red-900
+}
+.sub{
+  @apply text-white bg-transparent border-2 border-white hover:scale-120 transition hover:ml-4 duration-700 ease-in-out;
+}

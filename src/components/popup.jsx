@@ -14,6 +14,7 @@ const Popup = () => {
   };
 
   const correctAnswerForMel = "and all things attached"; // Specify the correct answer here
+  const altAnswer = "all things attached"; // Specify the correct answer here
 
   const handleYes = () => setStep(2);
   const handleNo = () => setStep(3);
@@ -58,9 +59,9 @@ const Popup = () => {
 
           {step === 2 && (
             <>
-              <p className="text-4xl font-bold">Good night, sweet dreams</p>
+              <p className="text-4xl font-bold">Good night, sweet dreams...</p>
               <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} className="mt-6 p-4 border rounded bg-red-700 text-pink-300 text-2xl" />
-              <button onClick={handleMelAnswerSubmit} className="mt-4 bg-red-500 text-white px-6 py-3 rounded text-2xl">Submit</button>
+              <button onClick={handleMelAnswerSubmit} className="sub mt-4 ml-2 bg-red-500 text-white px-6 py-3 rounded text-2xl">Submit</button>
             </>
           )}
 
