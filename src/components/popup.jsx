@@ -10,10 +10,12 @@ const Popup = () => {
 
   // Predefined special messages for specific names
   const specialMessages = {
-    "mel": "Mel, thanks for being such a great friend! Happy Val's day✨",
-    "beatrice": "Beatrice, may your day be as beautiful as you! 💕",
-    "lily": "Lily, you're a blooming joy! Happy Valentine's! 🌸",
-    'portia': "Damn girl call me ehh"
+    "mel": "Mel, thanks for being such a great friend! You're really an irreplaceable part of my life. Happy Val's day✨",
+    "beatrice": "Beatrice, you're a true gem! Happy Valentine's! Thank you for your plenty talk and support.💕",
+    "lily": "Lily, you're a blooming joy! Happy Valentine's! Thank you for your concern and always keeping me straight🌸",
+    'portia': "Damn girl call me ehh",
+    'colby': 'Stay dark friend🖤',
+    'May': 'May, you are a true gem! Happy Valentine\'s! Thank you for your plenty talk and support.💕',
   };
 
   // Correct answer required for Mel to receive the special message
@@ -47,22 +49,22 @@ const Popup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-red-900 text-pink-300 text-3xl">
+    <div className="flex items-center justify-center h-screen bg-red-900 text-pink-300 text-lg sm:text-xl md:text-2xl lg:text-3xl p-4">
       {/* Show modal only if step is less than 5 */}
       {step < 5 && (
         <motion.div 
           initial={{ scale: 0 }} 
           animate={{ scale: 1, transition: { type: 'spring', stiffness: 200 } }}
           exit={{ scale: 0 }}
-          className="fixed bg-red-800 p-12 rounded-2xl shadow-lg text-center"
+          className="fixed bg-red-800 p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl shadow-lg text-center w-full max-w-md"
         >
           {/* First step: Ask if user is Mel */}
           {step === 1 && (
             <>
-              <p className="text-4xl font-bold">Are you Mel?</p>
-              <div className="mt-6 flex justify-center gap-6">
-                <button onClick={handleYes} className="bg-red-500 text-white px-6 py-3 rounded text-2xl">Yes</button>
-                <button onClick={handleNo} className="bg-gray-500 text-white px-6 py-3 rounded text-2xl">No</button>
+              <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Are you Mel?</p>
+              <div className="mt-6 flex justify-center gap-4 sm:gap-6">
+                <button onClick={handleYes} className="bg-red-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded text-lg sm:text-2xl">Yes</button>
+                <button onClick={handleNo} className="bg-gray-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded text-lg sm:text-2xl">No</button>
               </div>
             </>
           )}
@@ -70,18 +72,18 @@ const Popup = () => {
           {/* Second step: Mel's secret question */}
           {step === 2 && (
             <>
-              <p className="text-4xl font-bold">Good night, sweet dreams</p>
-              <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} className="mt-6 p-4 border rounded bg-red-700 text-pink-300 text-2xl" />
-              <button onClick={handleMelAnswerSubmit} className="mt-4 bg-red-500 text-white px-6 py-3 rounded text-2xl">Submit</button>
+              <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Good night, sweet dreams...</p>
+              <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} className="mt-6 p-3 sm:p-4 border rounded bg-red-700 text-pink-300 text-lg sm:text-2xl w-full" />
+              <button onClick={handleMelAnswerSubmit} className="mt-4 bg-red-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded text-lg sm:text-2xl">Submit</button>
             </>
           )}
 
           {/* Third step: Ask for user's name */}
           {step === 3 && (
             <>
-              <p className="text-4xl font-bold">Enter your name:</p>
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="mt-6 p-4 border rounded bg-red-700 text-pink-300 text-2xl" />
-              <button onClick={handleNameSubmit} className="mt-4 bg-red-500 text-white px-6 py-3 rounded text-2xl">Submit</button>
+              <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Enter your name:</p>
+              <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="mt-6 p-3 sm:p-4 border rounded bg-red-700 text-pink-300 text-lg sm:text-2xl w-full" />
+              <button onClick={handleNameSubmit} className="mt-4 bg-red-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded text-lg sm:text-2xl">Submit</button>
             </>
           )}
         </motion.div>
@@ -92,9 +94,9 @@ const Popup = () => {
         <motion.div 
           initial={{ opacity: 0, scale: 0.5 }} 
           animate={{ opacity: 1, scale: 1, transition: { duration: 0.5 } }}
-          className="text-center bg-red-800 p-12 rounded-2xl shadow-lg text-pink-300"
+          className="text-center bg-red-800 p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl shadow-lg text-pink-300 w-full max-w-md"
         >
-          <p className="text-4xl font-bold">{message}</p>
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">{message}</p>
         </motion.div>
       )}
     </div>
