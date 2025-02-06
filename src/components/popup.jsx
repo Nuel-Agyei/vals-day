@@ -8,13 +8,13 @@ const Popup = () => {
   const [message, setMessage] = useState('');
 
   const specialMessages = {
-    "mel": "Mel, you're loved beyond words! ❤️",
+    "mel": "Mel, thanks for being such a great friend! Happy Val's day✨",
     "beatrice": "Beatrice, may your day be as beautiful as you! 💕",
     "lily": "Lily, you're a blooming joy! Happy Valentine's! 🌸"
   };
 
-  const correctAnswerForMel = "and all things attached"; 
-  
+  const correctAnswerForMel = "and all things attached"; // Specify the correct answer here
+
   const handleYes = () => setStep(2);
   const handleNo = () => setStep(3);
   
@@ -38,40 +38,37 @@ const Popup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-red-900 text-pink-300">
+    <div className="flex items-center justify-center h-screen bg-red-900 text-pink-300 text-3xl">
       {step < 5 && (
         <motion.div 
           initial={{ scale: 0 }} 
           animate={{ scale: 1, transition: { type: 'spring', stiffness: 200 } }}
           exit={{ scale: 0 }}
-          className="fixed bg-red-800 p-6 rounded-2xl shadow-lg text-center"
+          className="fixed bg-red-800 p-12 rounded-2xl shadow-lg text-center"
         >
           {step === 1 && (
             <>
-              <p className="text-lg font-bold">Are you Mel?</p>
-              <div className="mt-4 flex justify-center gap-4">
-                <button onClick={handleYes} className="bg-red-500 text-white px-4 py-2 rounded">Yes</button>
-                <button onClick={handleNo} className="bg-gray-500 text-white px-4 py-2 rounded">No</button>
+              <p className="text-4xl font-bold">Are you Mel?</p>
+              <div className="mt-6 flex justify-center gap-6">
+                <button onClick={handleYes} className="bg-red-500 text-white px-6 py-3 rounded text-2xl">Yes</button>
+                <button onClick={handleNo} className="bg-gray-500 text-white px-6 py-3 rounded text-2xl">No</button>
               </div>
             </>
           )}
 
           {step === 2 && (
             <>
-              <p className="text-lg font-bold">Good night, sweet dreams...</p>
-              <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} 
-              className="mt-4 p-2 border[1px] rounded bg-red-700 text-pink-300" />
-              <button onClick={handleMelAnswerSubmit} className="mt-2 bg-red-500 text-white px-4 py-2 rounded">
-                Submit</button>
+              <p className="text-4xl font-bold">Good night, sweet dreams</p>
+              <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} className="mt-6 p-4 border rounded bg-red-700 text-pink-300 text-2xl" />
+              <button onClick={handleMelAnswerSubmit} className="mt-4 bg-red-500 text-white px-6 py-3 rounded text-2xl">Submit</button>
             </>
           )}
 
           {step === 3 && (
             <>
-              <p className="text-lg font-bold">Enter your name:</p>
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="mt-4 p-2 border rounded bg-red-700 text-pink-300" />
-              <button onClick={handleNameSubmit} className="mt-2 bg-red-500 text-white px-4 py-2 rounded">
-                Submit</button>
+              <p className="text-4xl font-bold">Enter your name:</p>
+              <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="mt-6 p-4 border rounded bg-red-700 text-pink-300 text-2xl" />
+              <button onClick={handleNameSubmit} className="mt-4 bg-red-500 text-white px-6 py-3 rounded text-2xl">Submit</button>
             </>
           )}
         </motion.div>
@@ -81,9 +78,9 @@ const Popup = () => {
         <motion.div 
           initial={{ opacity: 0, scale: 0.5 }} 
           animate={{ opacity: 1, scale: 1, transition: { duration: 0.5 } }}
-          className="text-center bg-red-800 p-6 rounded-2xl shadow-lg text-pink-300"
+          className="text-center bg-red-800 p-12 rounded-2xl shadow-lg text-pink-300"
         >
-          <p className="text-lg font-bold">{message}</p>
+          <p className="text-4xl font-bold">{message}</p>
         </motion.div>
       )}
     </div>
