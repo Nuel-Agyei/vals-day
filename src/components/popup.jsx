@@ -13,14 +13,15 @@ const Popup = () => {
     "mel": "Mel, thanks for being such a great friend! You're really an irreplaceable part of my life. Happy Val's day✨",
     "beatrice": "Beatrice, you're a true gem! Happy Valentine's! Thank you for your plenty talk and support.💕",
     "lily": "Lily, you're a blooming joy! Happy Valentine's! Thank you for your concern and always keeping me straight🌸",
-    'portia': "Damn girl call me ehh",
+    'portia': "Damn girl call me ehh. Anyways happy Vals",
     'colby': 'Stay dark friend🖤',
-    'May': 'May, you are a true gem! Happy Valentine\'s! Thank you for your plenty talk and support.💕',
+    'May': 'May, you are a true gem! Happy Valentine\'s!💕',
   };
 
   // Correct answer required for Mel to receive the special message
   const correctAnswerForMel = "and all things attached";
   const altAnswer = 'all things attached';
+  const colby = 'the darkness';
 
   // Handlers to control the flow of modals
   const handleYes = () => setStep(2);
@@ -31,7 +32,10 @@ const Popup = () => {
     if (answer.trim().toLowerCase() === correctAnswerForMel.toLowerCase() || 
     answer.trim().toLowerCase() === altAnswer) {
       setMessage(specialMessages["mel"]);
-    } else {
+    } else if(answer.trim().toLowerCase() === colby.toLowerCase()){
+      setMessage(specialMessages[colby]);
+    }
+    else {
       setMessage("That's not the correct answer, try again!");
     }
     setStep(5);
