@@ -15,27 +15,38 @@ const Popup = () => {
     "lily": "Lily, you're a blooming joy! Happy Valentine's! Thank you for your concern and always keeping me straight🌸",
     'portia': "Damn girl call me ehh. Anyways happy Vals",
     'colby': 'Stay dark friend🖤',
-    'May': 'May, you are a true gem! Happy Valentine\'s!💕',
+    'may': 'May, you are a true gem! Happy Valentine\'s!💕', 
   };
 
-  // Correct answer required for Mel to receive the special message
-  const correctAnswerForMel = "and all things attached";
-  const altAnswer = 'all things attached';
-  const colby = 'the darkness';
+  // Correct answers required for special messages
+  const specialQuestions = {
+    "mel": "goodnight sweet dreams...",
+    "beatrice": "Ummm word up ig?",
+    "lily": "What flower represents you?",
+    'portia': "What’s my favorite inside joke?",
+    'colby': "mmmmmmmmm?",
+    'may': "why'd you pick that word tho😂?",
+  };
+
+  const specialAnswers = {
+    "mel": ["and all things attached", "all things attached"],
+    "beatrice": ["bea"],
+    "lily": ["lily", "flower"],
+    'portia': ["call me"],
+    'colby': ["the darkness"],
+    'may': ["our talks"],
+  };
 
   // Handlers to control the flow of modals
   const handleYes = () => setStep(2);
   const handleNo = () => setStep(3);
   
-  // Handles submission of Mel's special question
-  const handleMelAnswerSubmit = () => {
-    if (answer.trim().toLowerCase() === correctAnswerForMel.toLowerCase() || 
-    answer.trim().toLowerCase() === altAnswer) {
-      setMessage(specialMessages["mel"]);
-    } else if(answer.trim().toLowerCase() === colby.toLowerCase()){
-      setMessage(specialMessages[colby]);
-    }
-    else {
+  // Handles submission of special questions
+  const handleSpecialAnswerSubmit = () => {
+    const cleanedName = name.trim().toLowerCase();
+    if (specialAnswers[cleanedName] && specialAnswers[cleanedName].includes(answer.trim().toLowerCase())) {
+      setMessage(specialMessages[cleanedName]);
+    } else {
       setMessage("That's not the correct answer, try again!");
     }
     setStep(5);
@@ -45,11 +56,11 @@ const Popup = () => {
   const handleNameSubmit = () => {
     const cleanedName = name.trim().toLowerCase();
     if (specialMessages[cleanedName]) {
-      setMessage(specialMessages[cleanedName]);
+      setStep(4);
     } else {
-      setMessage(`Happy Valentine's, ${name || 'dear'}! 💘`); // Default message for unrecognized names
+      setMessage(`Happy Valentine's, ${name || 'dear'}! 💘`);
+      setStep(5);
     }
-    setStep(5);
   };
 
   return (
@@ -78,7 +89,7 @@ const Popup = () => {
             <>
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Good night, sweet dreams...</p>
               <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} className="mt-6 p-3 sm:p-4 border rounded bg-red-700 text-pink-300 text-lg sm:text-2xl w-full" />
-              <button onClick={handleMelAnswerSubmit} className="mt-4 bg-red-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded text-lg sm:text-2xl">Submit</button>
+              <button onClick={handleSpecialAnswerSubmit} className="mt-4 bg-red-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded text-lg sm:text-2xl">Submit</button>
             </>
           )}
 
@@ -88,6 +99,15 @@ const Popup = () => {
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Enter your name:</p>
               <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="mt-6 p-3 sm:p-4 border rounded bg-red-700 text-pink-300 text-lg sm:text-2xl w-full" />
               <button onClick={handleNameSubmit} className="mt-4 bg-red-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded text-lg sm:text-2xl">Submit</button>
+            </>
+          )}
+
+          {/* Fourth step: Ask special question */}
+          {step === 4 && (
+            <>
+              <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">{specialQuestions[name.trim().toLowerCase()]}</p>
+              <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} className="mt-6 p-3 sm:p-4 border rounded bg-red-700 text-pink-300 text-lg sm:text-2xl w-full" />
+              <button onClick={handleSpecialAnswerSubmit} className="mt-4 bg-red-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded text-lg sm:text-2xl">Submit</button>
             </>
           )}
         </motion.div>
@@ -104,7 +124,7 @@ const Popup = () => {
         </motion.div>
       )}
     </div>
-  );
+  );0
 };
 
 export default Popup;
