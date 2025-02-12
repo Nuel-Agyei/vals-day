@@ -56,5 +56,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: main   # <---- Deploying to the main branch
-          folder: build
+          folder: dist
           token: ${{ secrets.GITHUB_TOKEN }}
